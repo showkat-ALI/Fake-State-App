@@ -4,9 +4,10 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-transparent">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -55,37 +56,51 @@ const Navbar = () => {
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
-              <Link href="/">
-                <Link href="" className="text-white text-xl font-bold">
-                  MyApp
-                </Link>
+              <Link href="/" className="text-white text-xl font-bold">
+                MyApp
               </Link>
             </div>
             <div className="hidden sm:block sm:ml-6">
               <div className="flex space-x-4">
-                <Link href="/">
-                  <Link
-                    href=""
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Home
-                  </Link>
+                <Link
+                  href="/"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Home
                 </Link>
-                <Link href="/about">
+                <div
+                  className="relative"
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                >
                   <Link
-                    href=""
+                    href="/about"
                     className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                   >
                     About
                   </Link>
-                </Link>
-                <Link href="/contact">
-                  <Link
-                    href=""
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                  >
-                    Contact
-                  </Link>
+                  {dropdownOpen && (
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                      <Link
+                        href="/about/team"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Team
+                      </Link>
+                      <Link
+                        href="/about/company"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        Company
+                      </Link>
+                    </div>
+                  )}
+                </div>
+                <Link
+                  href="/contact"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Contact
                 </Link>
               </div>
             </div>
@@ -98,29 +113,23 @@ const Navbar = () => {
         id="mobile-menu"
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <Link href="/">
-            <Link
-              href=""
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Home
-            </Link>
+          <Link
+            href="/"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Home
           </Link>
-          <Link href="/about">
-            <Link
-              href=""
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              About
-            </Link>
+          <Link
+            href="/about"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            About
           </Link>
-          <Link href="/contact">
-            <Link
-              href=""
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-            >
-              Contact
-            </Link>
+          <Link
+            href="/contact"
+            className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Contact
           </Link>
         </div>
       </div>
